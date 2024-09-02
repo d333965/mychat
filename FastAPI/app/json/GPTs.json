@@ -1,5 +1,7 @@
 [
   {
+    "base_url":"http://47.236.128.204/v1/chat-messages", 
+    "api_key":"app-xjAiC58d1fQ9FD4b45EwZxFJ",
     "img": "/api/img/chat.jpg",
     "title": "聊天GPT",
     "context": "AI正常对话，无额外功能",
@@ -7,6 +9,8 @@
     "prologue": "你好，请随时向我提问"
   },
   {
+    "base_url":"",
+    "api_key":"app-0J3FMreAZRcVf98yyN1SwleV",
     "img": "/api/img/network.jpg",
     "title": "联网GPT",
     "context": "使用联网，回复可能会慢一些",
@@ -14,6 +18,8 @@
     "prologue": "如果使用联网功能，请使用以下格式提出问题噢：搜索+问题。<br/><br/>例如: 搜索今日天气。"
   },
   {
+    "base_url":"",
+    "api_key":"app-S8S28Jt13lDvctZX3UEwRAv2",
     "img": "/api/img/spider.jpg",
     "title": "网页总结",
     "context": "给GPT一个网页链接，向他提问",

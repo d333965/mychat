@@ -5,17 +5,7 @@ import asyncio
 import json
 import os
 
-async def process_request(request, config_key: str, retries: int = 5, delay: int = 2):
-    # 获取config.json的路径
-    config_path = os.path.join(os.path.dirname(__file__), '../json/config.json')
-
-    # 读取并解析config.json
-    with open(config_path, 'r') as config_file:
-        config = json.load(config_file)
-
-    # 获取具体的配置项
-    base_url = config.get("BASE_URL")
-    api_key = config.get(config_key)
+async def process_request(request, base_url, api_key, retries: int = 5, delay: int = 2):
 
     data = {
         "inputs": {},
