@@ -1,0 +1,23 @@
+[
+  {
+    "img": "/api/img/chat.jpg",
+    "title": "聊天GPT",
+    "context": "AI正常对话，无额外功能",
+    "url": "/chat/",
+    "prologue": "你好，请随时向我提问"
+  },
+  {
+    "img": "/api/img/network.jpg",
+    "title": "联网GPT",
+    "context": "使用联网，回复可能会慢一些",
+    "url": "/network/",
+    "prologue": "如果使用联网功能，请使用以下格式提出问题噢：搜索+问题。<br/><br/>例如: 搜索今日天气。"
+  },
+  {
+    "img": "/api/img/spider.jpg",
+    "title": "网页总结",
+    "context": "给GPT一个网页链接，向他提问",
+    "url": "/spider/",
+    "prologue": "请提供一个网页链接，和你的问题。<br/><br/>例如：https://www.baidu.com/ 请问这个链接讲了什么？"
+  }
+]
