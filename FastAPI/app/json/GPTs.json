@@ -4,7 +4,7 @@
     "api_key":"app-xjAiC58d1fQ9FD4b45EwZxFJ",
     "img": "/api/img/chat.jpg",
     "title": "聊天GPT",
-    "context": "AI正常对话，无额外功能",
+    "context": "AI正常对话，理解并回应用户的提问或陈述",
     "url": "/chat/",
     "prologue": "你好，请随时向我提问"
   },
@@ -25,5 +25,14 @@
     "context": "给GPT一个网页链接，向他提问",
     "url": "/spider/",
     "prologue": "请提供一个网页链接，和你的问题。<br/><br/>例如：https://www.baidu.com/ 请问这个链接讲了什么？"
+  },
+  {
+    "base_url":"",
+    "api_key":"app-lyoALu8bTshUoq3047Mm84Pz",
+    "img": "/api/img/coder.png",
+    "title": "代码助手",
+    "context": "处理代码相关的知识",
+    "url": "/coder/",
+    "prologue": "我将协助您完成代码的编写"
   }
 ]
