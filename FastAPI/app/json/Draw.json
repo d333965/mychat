@@ -1,0 +1,21 @@
+[
+    {
+      "base_url":"http://47.236.128.204/v1/chat-messages", 
+      "api_key":"app-3g6ljIrBkgYBjQXhrXOINRDh",
+      "img": "/api/img/text_to_img.jpg",
+      "title": "文生图",
+      "context": "提示词生成图片",
+      "url": "/text_to_img/",
+      "prologue": "请输入提示词生成图片"
+    },
+    {
+      "base_url":"",
+      "api_key":"app-0J3FMreAZRcVf98yyN1SwleV",
+      "img": "/api/img/network.jpg",
+      "title": "图生图",
+      "context": "图片生成图片",
+      "url": "/img_to_img/",
+      "prologue": "请传入图片生成新的图片"
+    }
+  ]
+  
