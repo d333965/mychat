@@ -4,14 +4,13 @@ FROM node:14 as build-stage
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json 和 package-lock.json（如果存在）
-COPY vue3/package*.json ./
+# 复制整个 vue3 目录
+COPY vue3 .
 
 # 安装项目依赖
 RUN npm install
 
-# 复制项目文件并构建应用
-COPY vue3 .
+# 构建应用
 RUN npm run build
 
 # 生产阶段
