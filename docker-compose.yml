@@ -3,12 +3,12 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./vue3
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: vue3/Dockerfile
     ports:
-      - "9000:80"
+      - "80:80"
     depends_on:
-      - nginx
+      - backend
 
   backend:
     build:
