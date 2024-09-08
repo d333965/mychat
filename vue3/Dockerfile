@@ -1,8 +1,24 @@
-# 使用官方的 Nginx 镜像作为基础镜像
-FROM nginx:alpine
+# 使用 Node.js 镜像来构建 Vue 应用
+FROM node:14 as build-stage
 
-# 将构建好的 Vue 项目 dist 目录复制到 Nginx 的默认静态文件目录
-COPY dist /usr/share/nginx/html
+# 设置工作目录
+WORKDIR /app
+
+# 复制 package.json 和 package-lock.json（如果存在）
+COPY vue3/package*.json ./
+
+# 安装项目依赖
+RUN npm install
+
+# 复制项目文件并构建应用
+COPY vue3 .
+RUN npm run build
+
+# 生产阶段
+FROM nginx:alpine as production-stage
+
+# 从构建阶段复制构建后的文件并复制到 Nginx 目录
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # 复制自定义的 Nginx 配置文件
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf

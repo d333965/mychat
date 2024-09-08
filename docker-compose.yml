@@ -17,11 +17,4 @@ services:
     ports:
       - "8000:8000"
 
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+  # 移除独立的 nginx 服务，因为它现在集成到 frontend 服务中
