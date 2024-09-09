@@ -28,4 +28,3 @@ services:
       - backend
     volumes:
       - ./nginx/ssl:/etc/nginx/ssl
-      - ./nginx/logs:/var/log/nginx  # 添加这行来挂载日志目录

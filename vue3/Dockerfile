@@ -4,9 +4,6 @@ FROM nginx:alpine
 # 将构建好的 Vue 项目 dist 目录复制到 Nginx 的默认静态文件目录
 COPY dist /usr/share/nginx/html
 
-# 添加自定义的 Nginx 配置
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
 # 暴露 80 端口
 EXPOSE 80
 
