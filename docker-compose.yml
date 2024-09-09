@@ -28,3 +28,4 @@ services:
       - backend
     volumes:
       - ./nginx/ssl:/etc/nginx/ssl
+      - ./vue3/dist:/usr/share/nginx/html  # 添加此行挂载vue项目的dist目录
