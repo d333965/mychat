@@ -1,0 +1,22 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+  }
+  .el-container {
+    height: 100%; /* 确保容器占满父元素 */
+  }
+  /* 全局布局样式 */
+  .common-layout {
+    background-color: #f4f5ff; /* 设置整体背景颜色 */
+    height: 100vh; /* 确保高度占满整个视口 */
+  }
+  
+  
+  * {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  
+  input, textarea {
+    user-select: text;
+  }
