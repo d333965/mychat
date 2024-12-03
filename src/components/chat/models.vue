@@ -7,9 +7,7 @@
       :class="{ active: selectedModel === model.id }"
       @click="selectModel(model.id)"
     >
-      <div class="model-avatar">
-        <div class="avatar-placeholder"></div>
-      </div>
+      <img :src="modelAvatars[model.id]" class="avatar">
       <div class="model-info">
         <div class="model-name">{{ model.name }}</div>
         <div class="model-desc">{{ model.description }}</div>
@@ -25,6 +23,16 @@
 
 <script setup>
 import { ref } from 'vue'
+// 导入所有模型头像
+import gpt4Avatar from '@/assets/img/chat/ChatGPT4.svg'
+import miniAvatar from '@/assets/img/chat/o1-mini.svg'
+import claudeAvatar from '@/assets/img/chat/claude.svg'
+
+const modelAvatars = {
+  gpt4: gpt4Avatar,
+  mini: miniAvatar,
+  claude: claudeAvatar
+}
 
 const selectedModel = ref('gpt4')
 
@@ -52,6 +60,11 @@ const selectModel = (modelId) => {
 </script>
 
 <style scoped>
+.avatar{
+  width: 40px;
+  margin-right: 15px;
+}
+
 .models-container {
   padding: 8px;
   border-radius: 8px;

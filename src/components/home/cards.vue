@@ -21,7 +21,7 @@
     </div>
 
     <!-- AI聊天对话卡片 -->
-    <div class="card card-large">
+    <div class="card card-large" @click="$router.push('/chat')">
       <div class="card-content coming-main">
         <div class="card-image">
           <!-- 图标占位 -->
