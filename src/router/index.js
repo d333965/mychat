@@ -8,6 +8,10 @@ const routes = [
   {
     path:"/chat",
     component: () => import("@/views/chat.vue"),
+  },
+  {
+    path:"/ceshi",
+    component: () => import("@/views/ceshi.vue"),
   }
 ];
 

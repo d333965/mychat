@@ -36,7 +36,7 @@
         <div class="card-image">
           <!-- 图标占位 -->
         </div>
-        <div class="card-title">AI生成PPT</div>
+        <div class="card-title">AI绘画</div>
       </div>
     </div>
 

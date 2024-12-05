@@ -1,11 +1,11 @@
 <template>
-   <div class="frame-1">
+  <div class="frame-1">
     <div class="rectangle-1" :style="{ height: boxHeight + 'px' }">
       <textarea
         v-model="inputText"
         class="input-area"
         placeholder="输入内容进行提问..."
-        @keydown.enter.prevent="handleEnter"
+        @keydown="handleKeydown"
         @input="adjustHeight"
         ref="textareaRef"
       ></textarea>
@@ -15,6 +15,7 @@
           class="send" 
           src="@/assets/img/chat/send.svg" 
           :class="{ 'send-disabled': !inputText }"
+          @click="sendMessage"
         />
       </div>
     </div>
@@ -23,17 +24,31 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useDialogueStore } from '@/stores/dialogueStore'
 
 const inputText = ref('')
 const boxHeight = ref(109)
 const lineHeight = 27
 const maxLines = 8
 const textareaRef = ref(null)
+const dialogueStore = useDialogueStore()
 
-const handleEnter = () => {
-  console.log('发送消息:', inputText.value)
+
+const sendMessage = () => {
+  if (!inputText.value) return
+  dialogueStore.addDialogue(inputText.value, '')
   inputText.value = ''
-  adjustHeight()
+  boxHeight.value = 109
+  dialogueStore.isDialogue = true
+}
+
+const handleKeydown = (event) => {
+  if (event.key === 'Enter') {
+    if (!event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  }
 }
 
 const adjustHeight = () => {
@@ -65,7 +80,6 @@ onMounted(() => {
   background: var(--gray1, #f3f3f3);
   border-radius: 20px;
   width: 737px;
-  min-height: 109px;
   max-height: 240px;
   position: relative;
   left: calc(50% - 368.5px);
