@@ -1,26 +1,15 @@
 <template>
-  <div class="contain">
-    <edits class="edits" />
-    <div class="talkMessageBox">
-        <talkMessage class="talkMessage" v-if="dialogueStore.isDialogue" />
-      <div class="titleInputBox" :class="{ 'move-to-bottom': dialogueStore.isDialogue }">
-        <title1 class="title1" v-if="!dialogueStore.isDialogue" />
-        <inputBox
-          class="inputBox"
-        />
-      </div>
-    </div>
-    <div class="avatarBox">
-      <avatar class="avatar" />
-    </div>
+  <div class="container">
+    <div class="header"><headbar /></div>
+    <div class="main" v-if="dialogueStore.isDialogue"><talkMessage/></div>
+    <div class="footer" :class="{'move-center': !dialogueStore.isDialogue}"><inputBox/></div>
   </div>
 </template>
 
 <script setup>
-import edits from "../components/chat/edits.vue";
-import avatar from "../components/chat/avatar.vue";
+import headbar from "../components/chat/headbar.vue";
 import inputBox from "../components/chat/inputBox.vue";
-import title1 from "../components/chat/title.vue";
+
 import talkMessage from "../components/chat/talkMessage.vue";
 import { useDialogueStore } from "@/stores/dialogueStore";
 
@@ -28,53 +17,51 @@ const dialogueStore = useDialogueStore();
 </script>
 
 <style scoped>
-.contain {
-  display: flex;
-  align-items: flex-start;
-  height: 100vh;
-  width: 100vw;
-}
-.edits {
-  flex: 1;
-}
-.talkMessageBox {
-  flex: 2;
+.container {
   width: 100%;
   height: 100vh;
-  padding: 20px;
-  box-sizing: border-box; /* 解决宽度超出的问题 */
   display: flex;
   flex-direction: column;
+  position: relative;
 }
-.talkMessage {
-  flex: 4;
-  width: 100%;
+.header{
   height: 60px;
 }
-.titleInputBox {
-  height: 100%;
+.main{
   flex: 1;
+  overflow-y: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  transition: all 0.3s ease-in-out; /* 添加过渡动画 */
 }
-.move-to-bottom {
-  justify-content: flex-end;
-  padding-bottom: 20px;
-}
-.avatarBox {
-  flex: 1;
+.footer{
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 20px 60px 0 0;
+  justify-content: center;
+  align-items: center;
 }
-.inputBox {
-  margin-top: 20px;
+.move-center{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
+/* 自定义滚动条样式 */
+.main::-webkit-scrollbar {
+  width: 6px;  /* 滚动条宽度 */
+}
 
+.main::-webkit-scrollbar-track {
+  background: #f1f1f1;  /* 滚动条轨道背景色 */
+  border-radius: 3px;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: #888;  /* 滚动条滑块颜色 */
+  border-radius: 3px;
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+  background: #555;  /* 鼠标悬停时滑块颜色 */
+}
 </style>

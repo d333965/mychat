@@ -1,5 +1,7 @@
 <template>
-  <div class="header-container">
+  <div class="header">
+  <!-- 左侧 -->
+  <div class="header-left">
     <!-- 侧边栏图标和提示文字容器 -->
     <div class="sidebar-container">
       <svg
@@ -70,6 +72,11 @@
       <models class="models" v-show="showModels" />
     </div>
   </div>
+  <!-- 右侧 -->
+  <div class="header-right">
+    <img src="@/assets/img/chat/avatar.svg" class="avatar">
+  </div>
+</div>
 </template>
 
 <script setup>
@@ -105,6 +112,24 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.header-left{
+  display: flex;
+  align-items: center;
+}
+.header-right{
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.avatar {
+    width: 34px;
+    height: 34px;
+}
 .models {
   position: absolute;
   top: 36px;
@@ -145,7 +170,7 @@ onUnmounted(() => {
   top: 18px;
 }
 
-.header-container {
+.header-left {
   display: flex;
   align-items: center;
   gap: 12px;

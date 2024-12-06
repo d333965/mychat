@@ -1,5 +1,7 @@
 <template>
-  <div class="frame-1">
+  <div class="input-box">
+    <title1 v-if="!dialogueStore.isDialogue"/>
+    <div class="frame-1">
     <div class="rectangle-1" :style="{ height: boxHeight + 'px' }">
       <textarea
         v-model="inputText"
@@ -19,12 +21,14 @@
         />
       </div>
     </div>
-  </div> 
+ </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useDialogueStore } from '@/stores/dialogueStore'
+import title1 from "@/components/chat/title.vue";
 
 const inputText = ref('')
 const boxHeight = ref(109)
@@ -71,6 +75,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.input-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 .frame-1 {
   min-height: 109px;
   position: relative;

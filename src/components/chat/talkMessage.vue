@@ -1,4 +1,5 @@
 <template>
+  <div style="width: 50%;">
   <div class="container" v-for="message in dialogueStore.dialogueHistory" :key="message.id">
   <!-- 用户消息 -->
   <div class="user-message">
@@ -22,6 +23,7 @@
     </div>
   </div>
   </div>
+</div>
 </template>
 
 <script setup>
