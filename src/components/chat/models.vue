@@ -4,7 +4,7 @@
       v-for="model in modelList" 
       :key="model.id"
       class="model-card"
-      :class="{ active: selectedModel === model.id }"
+      :class="{ active: chatConfigStore.model === model.id }"
       @click="selectModel(model.id)"
     >
       <img :src="modelAvatars[model.id]" class="avatar">
@@ -12,7 +12,7 @@
         <div class="model-name">{{ model.name }}</div>
         <div class="model-desc">{{ model.description }}</div>
       </div>
-      <div class="check-icon" v-if="selectedModel === model.id">
+      <div class="check-icon" v-if="chatConfigStore.model === model.id">
         <svg viewBox="0 0 24 24" class="check">
           <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
         </svg>
@@ -22,40 +22,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 // 导入所有模型头像
 import gpt4Avatar from '@/assets/img/chat/ChatGPT4.svg'
 import miniAvatar from '@/assets/img/chat/o1-mini.svg'
 import claudeAvatar from '@/assets/img/chat/claude.svg'
 
+import { useChatConfigStore } from '@/stores/chatConfigStore'
+
+const chatConfigStore = useChatConfigStore()
+
 const modelAvatars = {
-  gpt4: gpt4Avatar,
-  mini: miniAvatar,
-  claude: claudeAvatar
+  ChatGPT4: gpt4Avatar,
+  'o1-mini': miniAvatar,
+  'Claude-3-5-sonnet': claudeAvatar
 }
 
-const selectedModel = ref('gpt4')
 
 const modelList = [
   {
-    id: 'gpt4',
+    id: 'ChatGPT4',
     name: 'ChatGPT4',
     description: '适用于日常聊天任务'
   },
   {
-    id: 'mini',
+    id: 'o1-mini',
     name: 'o1-mini',
     description: 'openAI的深度思考模型'
   },
   {
-    id: 'claude',
+    id: 'Claude-3-5-sonnet',
     name: 'Claude-3-5-sonnet',
     description: '适用于代码的编写任务'
   }
 ]
 
 const selectModel = (modelId) => {
-  selectedModel.value = modelId
+  chatConfigStore.setModel(modelId)
 }
 </script>
 

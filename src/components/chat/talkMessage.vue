@@ -10,7 +10,7 @@
   </div>
   <!-- 助手消息 -->
   <div class="assitant-message">
-    <img src="@/assets/img/chat/ChatGPT4.svg" class="assitant-img">
+    <img :src="modelAvatars[chatConfigStore.model]" class="assitant-img">
     <div class="message-content">
       <div class="assitant-text">
         {{ message.assistant }}
@@ -28,8 +28,18 @@
 
 <script setup>
 import { useDialogueStore } from "@/stores/dialogueStore";
+import { useChatConfigStore } from "@/stores/chatConfigStore";
+import gpt4Avatar from '@/assets/img/chat/ChatGPT4.svg'
+import miniAvatar from '@/assets/img/chat/o1-mini.svg'
+import claudeAvatar from '@/assets/img/chat/claude.svg'
 
 const dialogueStore = useDialogueStore();
+const chatConfigStore = useChatConfigStore();
+const modelAvatars = {
+  ChatGPT4: gpt4Avatar,
+  'o1-mini': miniAvatar,
+  'Claude-3-5-sonnet': claudeAvatar
+}
 </script>
 
 

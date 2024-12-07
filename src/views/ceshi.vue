@@ -1,22 +1,46 @@
 <template>
-  <div class="container">
-    <div class="header"><headbar /></div>
-    <div class="main" v-if="dialogueStore.isDialogue"><talkMessage/></div>
-    <div class="footer" :class="{'move-center': !dialogueStore.isDialogue}"><inputBox/></div>
+  <div class = "page">
+    <div class="sidebar" :class="{ 'sidebar-open': chatConfigStore.isSidebar }">
+      <sidebar />
+</div>
+
+    <div class="container">
+      <div class="header"><headbar /></div>
+      <div class="main" v-if="dialogueStore.isDialogue"><talkMessage/></div>
+      <div class="footer" :class="{'move-center': !dialogueStore.isDialogue}"><inputBox/></div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import headbar from "../components/chat/headbar.vue";
 import inputBox from "../components/chat/inputBox.vue";
-
 import talkMessage from "../components/chat/talkMessage.vue";
+import sidebar from "../components/chat/sidebar/sidebar.vue";
 import { useDialogueStore } from "@/stores/dialogueStore";
+import { useChatConfigStore } from "@/stores/chatConfigStore";
 
 const dialogueStore = useDialogueStore();
+const chatConfigStore = useChatConfigStore();
 </script>
 
 <style scoped>
+.page{
+  display: flex;
+}
+.sidebar {
+  width: 0;
+  height: 100vh;
+  background: #b3b3b3;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar-open {
+  width: 300px;
+}
+
 .container {
   width: 100%;
   height: 100vh;
@@ -26,6 +50,7 @@ const dialogueStore = useDialogueStore();
 }
 .header{
   height: 60px;
+  z-index: 100;
 }
 .main{
   flex: 1;
@@ -37,6 +62,7 @@ const dialogueStore = useDialogueStore();
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 .move-center{
   position: absolute;
