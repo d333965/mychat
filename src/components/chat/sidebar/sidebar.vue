@@ -17,6 +17,7 @@ import History from './history.vue';
     width: 100%;
     height: 100vh;
     background: #f5f5f6;
+    position: relative;
 }
 
 </style>

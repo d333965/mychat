@@ -2,7 +2,7 @@
   <div class = "page">
     <div class="sidebar" :class="{ 'sidebar-open': chatConfigStore.isSidebar }">
       <sidebar />
-</div>
+    </div>
 
     <div class="container">
       <div class="header"><headbar /></div>
@@ -19,9 +19,29 @@ import talkMessage from "../components/chat/talkMessage.vue";
 import sidebar from "../components/chat/sidebar/sidebar.vue";
 import { useDialogueStore } from "@/stores/dialogueStore";
 import { useChatConfigStore } from "@/stores/chatConfigStore";
+import { onMounted, onBeforeUnmount } from "vue";
 
 const dialogueStore = useDialogueStore();
 const chatConfigStore = useChatConfigStore();
+
+// 添加页面刷新前的处理函数
+const handleBeforeUnload = (e) => {
+  if (dialogueStore.dialogueHistory.length > 0 ) {
+    // 使用第一条用户消息作为默认标题
+    const defaultTitle = dialogueStore.dialogueHistory[0]?.user || '未命名对话';
+    dialogueStore.creatDialogue(defaultTitle);
+  }
+};
+
+// 添加事件监听
+onMounted(() => {
+  window.addEventListener('beforeunload', handleBeforeUnload);
+});
+
+// 清理事件监听
+onBeforeUnmount(() => {
+  window.removeEventListener('beforeunload', handleBeforeUnload);
+});
 </script>
 
 <style scoped>

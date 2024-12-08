@@ -4,7 +4,7 @@
   <!-- 用户消息 -->
   <div class="user-message">
     <div class="frame">
-      <div class="user-text">{{ message.user }}</div>
+      <div class="user-text" style="white-space: pre-wrap;">{{ message.user }}</div>
     </div>  
     
   </div>

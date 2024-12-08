@@ -40,7 +40,7 @@ const dialogueStore = useDialogueStore()
 
 const sendMessage = () => {
   if (!inputText.value) return
-  dialogueStore.addDialogue(inputText.value, '')
+  dialogueStore.addDialogue(inputText.value, '你好，我是AI助手，有什么问题尽管问我吧！')
   inputText.value = ''
   boxHeight.value = 109
   dialogueStore.isDialogue = true

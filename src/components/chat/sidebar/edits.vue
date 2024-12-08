@@ -4,7 +4,7 @@
             <img src="@/assets/img/chat/sidebar.svg">
             <div class="tooltip">侧边栏</div>
         </div>
-        <div class="icon-wrapper">
+        <div class="icon-wrapper" @click="dialogueStore.creatDialogue(dialogueStore.dialogueHistory[0].user)">
             <img src="@/assets/img/chat/newCreat.svg">
             <div class="tooltip">新聊天</div>
         </div>
@@ -13,8 +13,9 @@
 
 <script setup>
 import { useChatConfigStore } from '@/stores/chatConfigStore';
-
+import { useDialogueStore } from '@/stores/dialogueStore';
 const chatConfigStore = useChatConfigStore();
+const dialogueStore = useDialogueStore();
 </script>
 
 <style scoped>
