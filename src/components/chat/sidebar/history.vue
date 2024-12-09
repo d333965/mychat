@@ -43,7 +43,7 @@
         <el-dialog
             v-model="renameDialogVisible"
             title="重命名对话"
-            width="30%"
+            width="400"
             :show-close="false"
             :close-on-click-modal="false"
         >
@@ -244,7 +244,7 @@ const confirmRename = () => {
 }
 
 .el-dialog {
-    border-radius: 12px;
+    border-radius: 20px;
 }
 
 .el-dialog__header {

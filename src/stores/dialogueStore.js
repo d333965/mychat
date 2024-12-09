@@ -34,7 +34,6 @@ export const useDialogueStore = defineStore("dialogue", () => {
                 if (index !== -1) {
                     savedDialogues.value[index] = {
                         ...savedDialogues.value[index],
-                        title: title,
                         history: [...dialogueHistory.value],
                         updatedAt: new Date().toISOString()
                     };

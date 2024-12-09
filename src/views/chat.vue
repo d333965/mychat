@@ -26,7 +26,7 @@ const chatConfigStore = useChatConfigStore();
 
 // 添加页面刷新前的处理函数
 const handleBeforeUnload = (e) => {
-  if (dialogueStore.dialogueHistory.length > 0 && !dialogueStore.currentEditingId) {
+  if (dialogueStore.dialogueHistory.length > 0) {
     const defaultTitle = dialogueStore.dialogueHistory[0]?.user || '未命名对话';
     dialogueStore.creatDialogue(defaultTitle);
   }
