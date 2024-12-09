@@ -11,10 +11,12 @@ import './assets/css/style.css'
 // 导入中文语言包
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
+const app = createApp(App)
 const pinia = createPinia()
+
+// 添加持久化插件
 pinia.use(piniaPluginPersistedstate)
 
-const app = createApp(App)
 app.use(pinia)
   .use(router)
   .use(ElementPlus)

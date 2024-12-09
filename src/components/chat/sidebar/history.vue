@@ -2,7 +2,7 @@
     <div class="history">
         <!-- 按日期分组显示历史记录 -->
         <div v-for="group in groupedDialogues" :key="group.date">
-            <span class="history-title">{{ group.date }}</span>
+            <div class="history-title">{{ group.date }}</div>
             <div v-for="dialogue in group.items" :key="dialogue.id" class="history-item"
                 :style="{ 'background': dialogue.id === currentEditingId ? '#e8e8e8' : '' }"
                 @click="handleDialogueClick(dialogue.id)">
@@ -40,11 +40,32 @@
                 </el-popover>
             </div>
         </div>
+        <el-dialog
+            v-model="renameDialogVisible"
+            title="重命名对话"
+            width="30%"
+            :show-close="false"
+            :close-on-click-modal="false"
+        >
+            <el-input
+                v-model="newTitle"
+                placeholder="请输入新的标题"
+                maxlength="50"
+                show-word-limit
+                @keyup.enter="confirmRename"
+            />
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="renameDialogVisible = false">取消</el-button>
+                    <el-button type="primary" @click="confirmRename">确定</el-button>
+                </span>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useDialogueStore } from '@/stores/dialogueStore';
 import { storeToRefs } from 'pinia';
 import { InfoFilled } from '@element-plus/icons-vue'
@@ -82,6 +103,8 @@ const groupedDialogues = computed(() => {
 // 处理点击对话记录
 const handleDialogueClick = (id) => {
     dialogueStore.loadSavedDialogue(id);
+    const index = savedDialogues.value.findIndex(d => d.id === id);
+    console.log(savedDialogues.value[index].title);
 };
 
 // 处理删除对话记录
@@ -89,17 +112,31 @@ const handleDelete = (id) => {
     dialogueStore.deleteSavedDialogue(id);
 };
 
-// 处理重命名（这里需要你添加重命名的具体实现）
+// 重命名相关的响应式变量
+const renameDialogVisible = ref(false);
+const newTitle = ref('');
+const currentDialogue = ref(null);
+
+// 处理重命名
 const handleRename = (dialogue) => {
-    // TODO: 实现重命名功能
-    console.log('重命名:', dialogue.title);
+    currentDialogue.value = dialogue;
+    newTitle.value = dialogue.title;
+    renameDialogVisible.value = true;
+};
+
+// 确认重命名
+const confirmRename = () => {
+    if (newTitle.value.trim()) {
+        dialogueStore.renameSavedDialogue(currentDialogue.value.id, newTitle.value.trim());
+        renameDialogVisible.value = false;
+    }
 };
 </script>
 
 <style>
 .history {
     width: 88%;
-    margin: 30px auto;
+    margin: 20px auto;
     overflow: auto;
     /* 隐藏滚动条 */
     scrollbar-width: none;
@@ -111,6 +148,7 @@ const handleRename = (dialogue) => {
     color: #000;
     font-weight: bold;
     margin: 5px;
+    margin-top: 20px;
 }
 
 .history-item {
@@ -196,5 +234,31 @@ const handleRename = (dialogue) => {
 .el-popconfirm {
     padding: 16px;
     border-radius: 8px;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.el-dialog {
+    border-radius: 12px;
+}
+
+.el-dialog__header {
+    margin: 0;
+    padding: 20px 20px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.el-dialog__body {
+    padding: 20px;
+}
+
+.el-input {
+    margin-top: 10px;
 }
 </style>

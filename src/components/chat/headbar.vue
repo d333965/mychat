@@ -9,7 +9,7 @@
     </div>
 
     <!-- 新建图标和提示文字容器 -->
-    <div class="new-chat-container"  v-if="!chatConfigStore.isSidebar">
+    <div class="new-chat-container"  v-if="!chatConfigStore.isSidebar" @click="dialogueStore.creatDialogue(dialogueStore.dialogueHistory[0].user)">
       <img src="@/assets/img/chat/newCreat.svg" class="new-icon">
 
       <div class="tooltip">新聊天</div>
@@ -47,9 +47,10 @@
 <script setup>
 import models from "./models.vue";
 import { ref, onMounted, onUnmounted } from "vue";
-import { useChatConfigStore } from '@/stores/chatConfigStore'
-
-const chatConfigStore = useChatConfigStore()
+import { useChatConfigStore } from '@/stores/chatConfigStore';
+import { useDialogueStore } from '@/stores/dialogueStore';
+const chatConfigStore = useChatConfigStore();
+const dialogueStore = useDialogueStore();
 
 const showModels = ref(false);
 

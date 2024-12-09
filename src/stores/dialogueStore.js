@@ -113,9 +113,17 @@ export const useDialogueStore = defineStore("dialogue", () => {
         savedDialogues.value = savedDialogues.value.filter(d => d.id !== id);
     };
 
-
-
-
+    // 添加重命名方法
+    const renameSavedDialogue = (id, newTitle) => {
+        const index = savedDialogues.value.findIndex(d => d.id === id);
+        if (index !== -1) {
+            savedDialogues.value[index] = {
+                ...savedDialogues.value[index],
+                title: newTitle,
+                updatedAt: new Date().toISOString()
+            };
+        }
+    };
 
     return {
         isDialogue,
@@ -127,6 +135,7 @@ export const useDialogueStore = defineStore("dialogue", () => {
         deleteSavedDialogue,
         isHistoryDialogue,
         currentEditingId,
+        renameSavedDialogue,
     };
 }, {
     persist: true
